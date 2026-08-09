@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://plastics-site.ilya140291.workers.dev/index.html</loc>
+    <loc>https://exapolymer.ru/index.html</loc>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://plastics-site.ilya140291.workers.dev/catalog.html</loc>
+    <loc>https://exapolymer.ru/catalog.html</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://plastics-site.ilya140291.workers.dev/about.html</loc>
+    <loc>https://exapolymer.ru/about.html</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://plastics-site.ilya140291.workers.dev/contacts.html</loc>
+    <loc>https://exapolymer.ru/contacts.html</loc>
     <priority>0.8</priority>
   </url>
 </urlset>

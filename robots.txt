@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://plastics-site.ilya140291.workers.dev/sitemap.xml
+Sitemap: https://exapolymer.ru/sitemap.xml
