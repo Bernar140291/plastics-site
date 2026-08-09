@@ -30,12 +30,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
       fetch(form.action, {
         method: "POST",
-        headers: { Accept: "application/json" },
         body: formData
       })
-        .then(function (response) { return response.json(); })
-        .then(function (data) {
-          if (data.success) {
+        .then(function (response) {
+          if (response.ok) {
             if (successBox) {
               successBox.classList.add("show");
               successBox.scrollIntoView({ behavior: "smooth", block: "center" });
