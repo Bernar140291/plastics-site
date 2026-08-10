@@ -6,7 +6,7 @@
       }
       .bg { fill: #f8f9fa; }
       .header-title { font-size: 34px; font-weight: 700; fill: #1a202c; }
-      .header-subtitle { font-size: 20px; fill: #4a5568; }
+      .header-subtitle { font-size: 20px; font-weight: 700; fill: #1a202c; }
       .header-subtitle-bold { font-weight: 700; fill: #1a202c; }
       .category-text { font-size: 22px; fill: #1a202c; font-weight: 400; }
       .temp-text { font-size: 22px; fill: #1a202c; font-weight: 400; font-variant-numeric: tabular-nums; }
