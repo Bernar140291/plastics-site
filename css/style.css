@@ -93,23 +93,6 @@ a { color: inherit; text-decoration: none; }
 }
 .demo-banner strong { font-weight: 700; }
 
-/* ---------- Верхняя строка с контактами ---------- */
-.topline {
-  background: var(--navy-dark);
-  color: rgba(255,255,255,.85);
-}
-.topline__inner {
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 7px 24px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 20px;
-  font-size: .82rem;
-}
-.topline a { color: rgba(255,255,255,.85); }
-.topline a:hover { color: #fff; }
-
 /* ---------- Header ---------- */
 .header {
   position: sticky;
@@ -164,59 +147,6 @@ a { color: inherit; text-decoration: none; }
   transition: background .15s, color .15s;
 }
 .nav a:hover, .nav a.active { background: var(--bg-alt); color: var(--navy-dark); }
-
-.nav-drop { position: relative; display: flex; align-items: center; }
-.nav-drop__toggle {
-  border: none;
-  background: none;
-  padding: 10px 8px;
-  margin-left: -6px;
-  cursor: pointer;
-  color: var(--slate);
-  display: flex;
-  align-items: center;
-}
-.nav-drop__toggle::after {
-  content: "";
-  width: 7px; height: 7px;
-  border-right: 2px solid currentColor;
-  border-bottom: 2px solid currentColor;
-  transform: rotate(45deg);
-  margin-top: -3px;
-}
-.nav-drop__panel {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  box-shadow: var(--shadow-hover);
-  padding: 10px;
-  min-width: 420px;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2px;
-  z-index: 50;
-}
-.nav-drop:hover .nav-drop__panel,
-.nav-drop.open .nav-drop__panel { display: grid; }
-.nav-drop__panel a {
-  padding: 8px 12px;
-  font-size: .88rem;
-  font-weight: 500;
-  border-radius: 6px;
-  white-space: nowrap;
-}
-.nav-drop__panel a:hover { background: var(--bg-alt); color: var(--navy-dark); }
-.nav-drop__panel a.all {
-  grid-column: 1 / -1;
-  border-top: 1px solid var(--border);
-  margin-top: 4px;
-  padding-top: 10px;
-  font-weight: 700;
-  color: var(--navy);
-}
 
 .header__contact {
   display: flex;
@@ -737,22 +667,6 @@ a { color: inherit; text-decoration: none; }
   .nav a { padding: 12px 14px; }
   .nav-toggle { display: flex; }
   .header__contact .header__phone-label { display: none; }
-  .topline__inner { justify-content: center; padding: 7px 16px; }
-  .nav-drop { flex-direction: column; align-items: stretch; }
-  .nav-drop__toggle { position: absolute; right: 4px; top: 2px; padding: 12px; }
-  .nav-drop__panel {
-    display: none;
-    position: static;
-    box-shadow: none;
-    border: none;
-    border-radius: 0;
-    padding: 0 0 0 14px;
-    min-width: 0;
-    grid-template-columns: 1fr;
-  }
-  .nav-drop:hover .nav-drop__panel { display: none; }
-  .nav-drop.open .nav-drop__panel { display: grid; }
-  .nav-drop__panel a { padding: 10px 14px; white-space: normal; }
   .adv-grid { grid-template-columns: 1fr; }
   .cert-grid { grid-template-columns: 1fr 1fr; }
   .form-two { grid-template-columns: 1fr; }
