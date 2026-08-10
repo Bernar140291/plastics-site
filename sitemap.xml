@@ -16,4 +16,16 @@
     <loc>https://exapolymer.ru/contacts.html</loc>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://exapolymer.ru/peek.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://exapolymer.ru/pom.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://exapolymer.ru/pp.html</loc>
+    <priority>0.7</priority>
+  </url>
 </urlset>
