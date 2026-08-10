@@ -29,14 +29,14 @@
   <line x1="129" y1="340" x2="471" y2="340" stroke="#ffffff" stroke-opacity="0.55" stroke-width="1.5"/>
 
   <!-- Материалы внутри ярусов -->
-  <text x="300" y="150" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#ffffff">PEEK · PPS</text>
-  <text x="300" y="175" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#ffffff">PTFE · PVDF</text>
+  <text x="300" y="150" text-anchor="middle" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#ffffff">PEEK · PPS</text>
+  <text x="300" y="175" text-anchor="middle" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#ffffff">PTFE · PVDF</text>
 
-  <text x="300" y="270" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#ffffff">PA · POM · PC</text>
-  <text x="300" y="300" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#ffffff">PET · PU</text>
+  <text x="300" y="270" text-anchor="middle" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#ffffff">PA · POM · PC</text>
+  <text x="300" y="300" text-anchor="middle" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#ffffff">PET · PU</text>
 
-  <text x="300" y="395" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#0f2027">PP · PE</text>
-  <text x="300" y="422" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#0f2027">UHMWPE</text>
+  <text x="300" y="395" text-anchor="middle" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#0f2027">PP · PE</text>
+  <text x="300" y="422" text-anchor="middle" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#0f2027">UHMWPE</text>
 
   <!-- Шкала температуры -->
   <line x1="540" y1="460" x2="580" y2="460" stroke="#7c8a92" stroke-width="1.5"/>
@@ -44,19 +44,15 @@
   <line x1="403" y1="220" x2="580" y2="220" stroke="#7c8a92" stroke-width="1.5" stroke-dasharray="3 4"/>
   <line x1="300" y1="40" x2="580" y2="40" stroke="#7c8a92" stroke-width="1.5" stroke-dasharray="3 4"/>
 
-  <text x="588" y="464" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#4a565d">80°C</text>
-  <text x="588" y="344" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#4a565d">130°C</text>
-  <text x="588" y="224" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#4a565d">220°C</text>
-  <text x="588" y="44" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#4a565d">260°C+</text>
+  <text x="588" y="464" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#4a565d">80°C</text>
+  <text x="588" y="344" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#4a565d">130°C</text>
+  <text x="588" y="224" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#4a565d">220°C</text>
+  <text x="588" y="44" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#4a565d">260°C+</text>
 
-  <!-- Подписи ярусов слева -->
-  <text x="52" y="130" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#4a565d">Высоко-</text>
-  <text x="52" y="148" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#4a565d">температурные</text>
+  <!-- Подписи ярусов слева (в одну строку) -->
+  <text x="-90" y="134" text-anchor="start" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#3d4a50">Высокотемпературные</text>
+  <text x="-90" y="278" text-anchor="start" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#3d4a50">Конструкционные</text>
+  <text x="-90" y="400" text-anchor="start" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#3d4a50">Стандартные</text>
 
-  <text x="52" y="272" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#4a565d">Конструк-</text>
-  <text x="52" y="290" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#4a565d">ционные</text>
-
-  <text x="52" y="404" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#4a565d">Стандартные</text>
-
-  <text x="590" y="490" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#8a959b">Длительная рабочая температура</text>
+  <text x="590" y="490" text-anchor="end" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="12" fill="#8a959b">Длительная рабочая температура</text>
 </svg>

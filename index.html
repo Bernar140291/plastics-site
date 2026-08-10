@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ExaPolymer — инженерные пластики для промышленности</title>
 <meta name="description" content="Поставка инженерных пластиков: фторопласт, полиамид, полиацеталь, UHMWPE, поликарбонат, PEEK, PPS, PVDF, полиуретан. Листы, стержни, готовые изделия по чертежам.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -44,7 +47,57 @@
       </div>
     </div>
     <div class="hero__pyramid">
-      <img src="assets/pyramid.svg" alt="Пирамида классификации инженерных пластиков по рабочей температуре: стандартные, конструкционные, высокотемпературные" loading="lazy">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="-100 0 760 500" role="img" aria-labelledby="pyrTitle pyrDesc">
+        <title id="pyrTitle">Классификация инженерных пластиков</title>
+        <desc id="pyrDesc">Пирамида полимеров: стандартные, конструкционные и высокотемпературные пластики по рабочей температуре</desc>
+
+        <defs>
+          <linearGradient id="bandHot" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ffb27a"/>
+            <stop offset="100%" stop-color="#ff6b4a"/>
+          </linearGradient>
+          <linearGradient id="bandMid" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#2dd4bf"/>
+            <stop offset="100%" stop-color="#0d9488"/>
+          </linearGradient>
+          <linearGradient id="bandLow" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#a8e6df"/>
+            <stop offset="100%" stop-color="#5eeadb"/>
+          </linearGradient>
+        </defs>
+
+        <polygon points="300,40 403,220 197,220" fill="url(#bandHot)"/>
+        <polygon points="197,220 403,220 471,340 129,340" fill="url(#bandMid)"/>
+        <polygon points="129,340 471,340 540,460 60,460" fill="url(#bandLow)"/>
+
+        <line x1="197" y1="220" x2="403" y2="220" stroke="#ffffff" stroke-opacity="0.55" stroke-width="1.5"/>
+        <line x1="129" y1="340" x2="471" y2="340" stroke="#ffffff" stroke-opacity="0.55" stroke-width="1.5"/>
+
+        <text x="300" y="150" text-anchor="middle" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#ffffff">PEEK · PPS</text>
+        <text x="300" y="175" text-anchor="middle" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#ffffff">PTFE · PVDF</text>
+
+        <text x="300" y="270" text-anchor="middle" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#ffffff">PA · POM · PC</text>
+        <text x="300" y="300" text-anchor="middle" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#ffffff">PET · PU</text>
+
+        <text x="300" y="395" text-anchor="middle" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#0f2027">PP · PE</text>
+        <text x="300" y="422" text-anchor="middle" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#0f2027">UHMWPE</text>
+
+        <line x1="540" y1="460" x2="580" y2="460" stroke="#7c8a92" stroke-width="1.5"/>
+        <line x1="471" y1="340" x2="580" y2="340" stroke="#7c8a92" stroke-width="1.5" stroke-dasharray="3 4"/>
+        <line x1="403" y1="220" x2="580" y2="220" stroke="#7c8a92" stroke-width="1.5" stroke-dasharray="3 4"/>
+        <line x1="300" y1="40" x2="580" y2="40" stroke="#7c8a92" stroke-width="1.5" stroke-dasharray="3 4"/>
+
+        <text x="588" y="464" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#4a565d">80°C</text>
+        <text x="588" y="344" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#4a565d">130°C</text>
+        <text x="588" y="224" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#4a565d">220°C</text>
+        <text x="588" y="44" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#4a565d">260°C+</text>
+
+        <text x="-90" y="134" text-anchor="start" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#3d4a50">Высокотемпературные</text>
+        <text x="-90" y="278" text-anchor="start" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#3d4a50">Конструкционные</text>
+        <text x="-90" y="400" text-anchor="start" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#3d4a50">Стандартные</text>
+
+        <text x="590" y="490" text-anchor="end" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="12" fill="#8a959b">Длительная рабочая температура</text>
+      </svg>
     </div>
   </div>
 </section>
