@@ -14,6 +14,23 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Выпадающее меню "Каталог материалов"
+  document.querySelectorAll(".nav-drop__toggle").forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var drop = btn.closest(".nav-drop");
+      var wasOpen = drop.classList.contains("open");
+      document.querySelectorAll(".nav-drop.open").forEach(function (d) { d.classList.remove("open"); });
+      if (!wasOpen) drop.classList.add("open");
+    });
+  });
+  document.addEventListener("click", function (e) {
+    if (!e.target.closest(".nav-drop")) {
+      document.querySelectorAll(".nav-drop.open").forEach(function (d) { d.classList.remove("open"); });
+    }
+  });
+
   // Отправка формы заявки через Web3Forms (без своего бэкенда)
   document.querySelectorAll("form[data-lead-form]").forEach(function (form) {
     form.addEventListener("submit", function (e) {
