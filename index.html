@@ -135,54 +135,101 @@
 </section>
 
 <section class="section section--alt">
-  <div class="container">
+  <div class="container container--wide">
     <div class="section-head">
       <span class="eyebrow">Продукция</span>
-      <h2>Основные группы материалов</h2>
-      <p>11 материалов в трёх уровнях — от стандартных до высокотемпературных. Полный перечень марок и типоразмеров — в разделе «Каталог материалов».</p>
+      <h2>Сравнение материалов</h2>
+      <p>Температура эксплуатации, прочность и типичные области применения для самых востребованных материалов. Полный перечень из 11 позиций в трёх температурных уровнях — в разделе «Каталог материалов».</p>
     </div>
-    <div class="cat-grid">
-      <div class="cat-card">
-        <div class="cat-card__top">
-          <div class="cat-card__code">PEEK</div>
-          <div><h3>Полиэфирэфиркетон</h3><span>Высокотемпературный пластик</span></div>
-        </div>
-        <div class="cat-card__body">
-          <p>Один из самых термостойких инженерных пластиков, длительная работа до +250°C.</p>
-          <div class="cat-card__foot"><span class="tag">Авиация</span><span class="tag">Медицина</span></div>
-        </div>
-      </div>
-      <div class="cat-card">
-        <div class="cat-card__top">
-          <div class="cat-card__code">PTFE</div>
-          <div><h3>Фторопласт</h3><span>Листы, стержни, плёнка</span></div>
-        </div>
-        <div class="cat-card__body">
-          <p>Химически инертен, работает от −190°C до +260°C, минимальный коэффициент трения.</p>
-          <div class="cat-card__foot"><span class="tag">Уплотнения</span><span class="tag">Химстойкость</span></div>
-        </div>
-      </div>
-      <div class="cat-card">
-        <div class="cat-card__top">
-          <div class="cat-card__code">PA</div>
-          <div><h3>Полиамид</h3><span>PA6, PA66, капролон</span></div>
-        </div>
-        <div class="cat-card__body">
-          <p>Высокая механическая прочность, износостойкость, хорошо обрабатывается на станках.</p>
-          <div class="cat-card__foot"><span class="tag">Втулки</span><span class="tag">Шестерни</span></div>
-        </div>
-      </div>
-      <div class="cat-card">
-        <div class="cat-card__top">
-          <div class="cat-card__code">PP</div>
-          <div><h3>Полипропилен</h3><span>Листы, стержни</span></div>
-        </div>
-        <div class="cat-card__body">
-          <p>Химически стойкий, лёгкий материал с хорошей усталостной прочностью на изгиб.</p>
-          <div class="cat-card__foot"><span class="tag">Химёмкости</span><span class="tag">Сварные конструкции</span></div>
-        </div>
-      </div>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Материал</th>
+            <th>Категория</th>
+            <th>Макс. темп. (°C)</th>
+            <th>Предел прочности</th>
+            <th>Ключевая характеристика</th>
+            <th>Типичные области применения</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="mat-name">PEEK</td>
+            <td>Специализация</td>
+            <td class="val">260</td>
+            <td class="val">100 МПа</td>
+            <td>Экстремальная термостойкость и химическая стойкость</td>
+            <td>Аэрокосмическая промышленность, медицина, производство полупроводников</td>
+          </tr>
+          <tr>
+            <td class="mat-name">PEI (Ultem)</td>
+            <td>Специализация</td>
+            <td class="val">217</td>
+            <td class="val">105 МПа</td>
+            <td>Огнестойкость, электроизоляция</td>
+            <td>Внутренняя отделка самолётов, медицинские приборы</td>
+          </tr>
+          <tr>
+            <td class="mat-name">PPS</td>
+            <td>Специализация</td>
+            <td class="val">220</td>
+            <td class="val">80 МПа</td>
+            <td>Стабильность размеров, огнестойкость</td>
+            <td>Автомобильные корпуса, корпуса для электроники</td>
+          </tr>
+          <tr>
+            <td class="mat-name">POM</td>
+            <td>Инженерный</td>
+            <td class="val">90</td>
+            <td class="val">68 МПа</td>
+            <td>Низкое трение, прецизионные допуски</td>
+            <td>Шестерни, подшипники, клапаны</td>
+          </tr>
+          <tr>
+            <td class="mat-name">PA (Nylon)</td>
+            <td>Инженерный</td>
+            <td class="val">120</td>
+            <td class="val">75 МПа</td>
+            <td>Износостойкость, усталостная прочность</td>
+            <td>Колёса, ролики, износостойкие накладки</td>
+          </tr>
+          <tr>
+            <td class="mat-name">PET</td>
+            <td>Инженерный</td>
+            <td class="val">130</td>
+            <td class="val">80 МПа</td>
+            <td>Устойчивость к ползучести, безопасность для пищевых продуктов</td>
+            <td>Пищевая промышленность, электроника</td>
+          </tr>
+          <tr>
+            <td class="mat-name">PC</td>
+            <td>Общие</td>
+            <td class="val">120</td>
+            <td class="val">65 МПа</td>
+            <td>Оптическая прозрачность, высокая ударопрочность</td>
+            <td>Дисплеи, защитные экраны</td>
+          </tr>
+          <tr>
+            <td class="mat-name">PU</td>
+            <td>Общие</td>
+            <td class="val">80</td>
+            <td class="val">40 МПа</td>
+            <td>Устойчивость к истиранию и разрыву</td>
+            <td>Уплотнения, ролики, бамперы</td>
+          </tr>
+          <tr>
+            <td class="mat-name">ABS</td>
+            <td>Общие</td>
+            <td class="val">80</td>
+            <td class="val">42 МПа</td>
+            <td>Сбалансированная жёсткость и прочность</td>
+            <td>Корпуса, приспособления, кондукторы</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+    <p style="font-size:.8rem; color:var(--text-muted); margin-top:14px;">Значения ориентировочные и зависят от конкретной марки, наполнения и условий эксплуатации.</p>
     <div style="text-align:center; margin-top:36px;">
       <a href="catalog.html" class="btn btn--navy">Все материалы каталога</a>
     </div>
