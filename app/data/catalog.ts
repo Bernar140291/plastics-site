@@ -1,4 +1,4 @@
-import catalogJson from "./catalog-full.json";
+import catalogJson from "../../public/data/catalog.json";
 
 export type PhysicalRow = {
   label: string;

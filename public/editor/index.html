@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Редактор каталога — ExaPolymer</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="editor.css">
+<link rel="icon" type="image/svg+xml" href="/icon.svg">
+</head>
+<body class="editor-body">
+
+<div class="editor-shell">
+  <div class="editor-topbar">
+    <div class="editor-topbar__title">
+      <h1>Редактор каталога ExaPolymer</h1>
+      <span class="sub">локальный инструмент · правит public/data/catalog.json</span>
+    </div>
+    <div class="editor-topbar__actions">
+      <div class="save-info">
+        <span class="save-status saved" id="saveStatus">Загрузка…</span>
+        <span class="folder-status" id="folderStatus"></span>
+      </div>
+      <button type="button" class="btn-ghost" id="changeFolderBtn" title="Выберите папку C:\Users\Bernarilya\Desktop\Cloude\Сайт инженерных пластиков (саму эту папку, не заходя внутрь js или data)">📁 Папка сайта</button>
+      <a href="/catalog" class="btn-ghost">← На сайт</a>
+      <button type="button" class="btn-save" id="saveBtn">💾 Сохранить</button>
+    </div>
+  </div>
+
+  <div class="editor-body-row">
+    <aside class="editor-sidebar" id="editorSidebar">
+      <p class="editor-empty">Загрузка каталога…</p>
+      <input type="file" id="manualLoad" accept="application/json" style="display:none;margin-top:10px">
+    </aside>
+
+    <section class="editor-form-pane" id="editorForm">
+      <p class="editor-empty">Загрузка…</p>
+    </section>
+
+    <section class="editor-preview-pane">
+      <p class="editor-preview-pane__label">Превью страницы артикула</p>
+      <div id="editorPreview"></div>
+    </section>
+  </div>
+</div>
+
+<script src="render.js"></script>
+<script src="editor.js"></script>
+</body>
+</html>
