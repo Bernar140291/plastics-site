@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
+import { SITE_ORIGIN } from "./data/site";
 import "./globals.css";
 
 const manrope = Manrope({ variable: "--font-manrope", subsets: ["cyrillic", "latin"], display: "swap" });
-const metadataBase = new URL(
-  "https://exapolymer-engineering-preview.ilya140291.chatgpt.site",
-);
+const metadataBase = new URL(SITE_ORIGIN);
 
 export const metadata: Metadata = {
   metadataBase,
@@ -18,9 +17,9 @@ export const metadata: Metadata = {
     description: "Инженерные пластики под задачу",
     type: "website",
     locale: "ru_RU",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "ExaPolymer — инженерные пластики под задачу" }],
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "ExaPolymer — инженерные пластики под задачу" }],
   },
-  twitter: { card: "summary_large_image", title: "ExaPolymer", description: "Инженерные пластики под задачу", images: ["/og.png"] },
+  twitter: { card: "summary_large_image", title: "ExaPolymer", description: "Инженерные пластики под задачу", images: ["/og.jpg"] },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

@@ -387,6 +387,13 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--focus); outline
 .form-success pre { max-height: 310px; overflow: auto; margin: 22px 0; padding: 17px; border: 1px solid var(--line); border-radius: 9px; background: white; color: var(--ink); white-space: pre-wrap; font: 12px/1.6 var(--font-manrope), Arial, sans-serif; }
 .prepared-actions { display: flex; flex-wrap: wrap; gap: 10px; }
 .copy-status { margin-bottom: 0; color: var(--teal-deep) !important; font-weight: 750; }
+.form-success.is-error { border-color: #f0bdb1; background: #fdecea; }
+.form-success.is-error svg { color: var(--orange); }
+.form-success.is-error h2 { color: #7d2c19; }
+.file-reminder { display: flex; align-items: center; gap: 9px; margin-top: 16px; padding: 13px 15px; border-left: 3px solid var(--teal); border-radius: 0 8px 8px 0; background: white; color: var(--ink) !important; font-size: 13px; }
+.file-reminder svg { flex: 0 0 auto; }
+.file-reminder a { color: var(--teal-deep); font-weight: 750; text-decoration: underline; }
+.form-submit:disabled { opacity: .65; cursor: progress; transform: none; }
 
 @media (max-width: 900px) {
   .desktop-nav { display: none; }

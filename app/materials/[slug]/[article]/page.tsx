@@ -4,9 +4,10 @@ import { ArrowLeft, ArrowRight, Box, FileCheck2, Layers3, Palette } from "lucide
 import { ProductTabs } from "../../../components/product-tabs";
 import { articleDescription, articleSlug, catalogArticleBySlug, catalogMaterialBySlug, publicPhoto, supplierCatalog } from "../../../data/catalog";
 import { materialBySlug } from "../../../data/materials";
+import { SITE_ORIGIN } from "../../../data/site";
 
 type PageProps = { params: Promise<{ slug: string; article: string }> };
-const siteOrigin = "https://exapolymer-engineering-preview.ilya140291.chatgpt.site";
+
 const siteSlugBySourceCode: Record<string, string> = { pe: "pe-hd" };
 
 export function generateStaticParams() {
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const title = `${material.code} ${article.code} — ${article.kind || "марка материала"}`;
   const description = article.shortDescription || `${material.name}, марка ${article.code}: характеристики, размеры и применение.`;
   const image = publicPhoto(article.photo);
-  const images = image ? [{ url: new URL(image, siteOrigin).toString(), alt: `${material.code} ${article.code}` }] : [];
+  const images = image ? [{ url: new URL(image, SITE_ORIGIN).toString(), alt: `${material.code} ${article.code}` }] : [];
   return {
     title,
     description,
