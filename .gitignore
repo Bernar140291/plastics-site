@@ -40,3 +40,5 @@ next-env.d.ts
 # зависимости и сборка
 /node_modules/
 /dist/
+tsconfig.tsbuildinfo
+/.vinext/
