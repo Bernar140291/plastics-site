@@ -2,13 +2,12 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Box, FileCheck2, Layers3, Palette } from "lucide-react";
 import { ProductTabs } from "../../../components/product-tabs";
-import { articleDescription, articleSlug, catalogArticleBySlug, catalogMaterialBySlug, publicPhoto, supplierCatalog } from "../../../data/catalog";
+import { articleDescription, articleSlug, catalogArticleBySlug, catalogMaterialBySlug, publicPhoto, siteSlugBySourceCode, supplierCatalog } from "../../../data/catalog";
 import { materialBySlug } from "../../../data/materials";
 import { SITE_ORIGIN } from "../../../data/site";
 
 type PageProps = { params: Promise<{ slug: string; article: string }> };
 
-const siteSlugBySourceCode: Record<string, string> = { pe: "pe-hd" };
 
 export function generateStaticParams() {
   return supplierCatalog.materials.flatMap((material) => material.artikuls.map((article) => ({

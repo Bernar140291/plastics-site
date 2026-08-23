@@ -31,8 +31,11 @@ export function RequestForm() {
     const selected = materials.find((item) => item.slug === material);
     const materialLabel = selected ? `${selected.code} — ${selected.name}` : "Нужен подбор";
 
+    /* Вложение через web3forms не уходит, поэтому файл из отправки убираем,
+       но упоминаем и в письме-фолбэке, и в экране успеха. */
     const file = form.get("file");
-    setHadFile(file instanceof File && file.size > 0);
+    const withFile = file instanceof File && file.size > 0;
+    setHadFile(withFile);
     form.delete("file");
 
     const lines = [
@@ -47,6 +50,7 @@ export function RequestForm() {
       "",
       "Условия работы, размеры и количество:",
       String(form.get("task") || "—"),
+      ...(withFile ? ["", "Примечание: чертёж нужно приложить к письму вручную."] : []),
     ];
     const text = lines.join("\n");
     const subject = `Запрос ExaPolymer: ${selected?.code || "подбор материала"}${grade ? ` ${grade}` : ""}`;
@@ -61,8 +65,15 @@ export function RequestForm() {
     setStatus("sending");
     setCopyStatus("");
     try {
-      const response = await fetch(ENDPOINT, { method: "POST", body: form });
-      if (!response.ok) throw new Error(`bad status ${response.status}`);
+      const response = await fetch(ENDPOINT, {
+        method: "POST",
+        body: form,
+        headers: { Accept: "application/json" },
+      });
+      /* web3forms отвечает 200 и на отказ (спам-фильтр, honeypot, исчерпанная квота),
+         признак доставки — только поле success в теле. */
+      const result = await response.json().catch(() => null);
+      if (!response.ok || !result?.success) throw new Error(result?.message || `HTTP ${response.status}`);
       setStatus("sent");
     } catch {
       setStatus("error");
@@ -96,44 +107,47 @@ export function RequestForm() {
     </div>
   );
 
-  if (status === "error") return (
-    <div className="form-success is-error" role="alert">
-      <AlertTriangle size={30} />
-      <h2>Не удалось отправить</h2>
-      <p>Сервис отправки не ответил. Текст заявки готов — откройте письмо или скопируйте его, ответим так же.</p>
-      <pre>{fallbackText}</pre>
-      <div className="prepared-actions">
-        <a className="button button-primary" href={mailto}><Mail size={18} /> Открыть письмо</a>
-        <button className="button button-outline-dark" type="button" onClick={copyRequest}><Copy size={18} /> Скопировать</button>
-        <button className="reset-button" type="button" onClick={() => { setStatus("idle"); setCopyStatus(""); }}>
-          <RotateCcw size={16} /> Попробовать снова
-        </button>
-      </div>
-      {copyStatus && <p className="copy-status">{copyStatus}</p>}
-    </div>
-  );
-
+  /* Форма при ошибке остаётся смонтированной: поля неуправляемые, и подмена
+     поддерева стёрла бы уже введённое техзадание. */
   return (
-    <form className="request-form" onSubmit={submit}>
-      <input type="checkbox" name="botcheck" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
-      <div className="form-row">
-        <label><span>Имя *</span><input name="name" autoComplete="name" required /></label>
-        <label><span>Компания / ИП</span><input name="company" autoComplete="organization" /></label>
-      </div>
-      <div className="form-row">
-        <label><span>Email *</span><input name="email" type="email" autoComplete="email" required /></label>
-        <label><span>Телефон</span><input name="phone" type="tel" autoComplete="tel" /></label>
-      </div>
-      <div className="form-row">
-        <label><span>Материал</span><select name="material" value={material} onChange={(event) => setMaterial(event.target.value)}><option value="">Нужен подбор</option>{materials.map((item) => <option key={item.slug} value={item.slug}>{item.code} — {item.name}</option>)}</select></label>
-        <label><span>Марка / артикул</span><input name="grade" value={grade} onChange={(event) => setGrade(event.target.value)} placeholder="Например, K12N/B" /></label>
-      </div>
-      <label><span>Условия работы и размеры *</span><textarea name="task" rows={7} required placeholder="Температура, химическая среда, нагрузка, размеры, количество и желаемый срок" /></label>
-      <label className="file-field"><span><FileUp size={18} /> Чертёж или техническое задание</span><input name="file" type="file" accept=".pdf,.dwg,.dxf,.step,.stp,.jpg,.jpeg,.png" /><small>Файл остаётся на устройстве: после отправки пришлите его письмом на info@exapolymer.ru.</small></label>
-      <label className="consent-field"><input type="checkbox" required /><span>Согласен на обработку указанных данных для ответа на заявку.</span></label>
-      <button className="button button-primary form-submit" type="submit" disabled={status === "sending"}>
-        <Send size={18} /> {status === "sending" ? "Отправляем…" : "Отправить заявку"}
-      </button>
-    </form>
+    <div className="request-form-wrap">
+      {status === "error" && (
+        <div className="send-error" role="alert">
+          <AlertTriangle size={24} />
+          <div>
+            <h3>Не удалось отправить</h3>
+            <p>Сервис отправки не ответил. Введённое сохранено — попробуйте ещё раз или отправьте письмом, ответим так же.</p>
+            <details><summary>Текст заявки</summary><pre>{fallbackText}</pre></details>
+            <div className="prepared-actions">
+              <a className="button button-primary" href={mailto}><Mail size={18} /> Открыть письмо</a>
+              <button className="button button-outline-dark" type="button" onClick={copyRequest}><Copy size={18} /> Скопировать</button>
+            </div>
+            {copyStatus && <p className="copy-status">{copyStatus}</p>}
+          </div>
+        </div>
+      )}
+
+      <form className="request-form" onSubmit={submit}>
+        <input type="checkbox" name="botcheck" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+        <div className="form-row">
+          <label><span>Имя *</span><input name="name" autoComplete="name" required /></label>
+          <label><span>Компания / ИП</span><input name="company" autoComplete="organization" /></label>
+        </div>
+        <div className="form-row">
+          <label><span>Email *</span><input name="email" type="email" autoComplete="email" required /></label>
+          <label><span>Телефон</span><input name="phone" type="tel" autoComplete="tel" /></label>
+        </div>
+        <div className="form-row">
+          <label><span>Материал</span><select name="material" value={material} onChange={(event) => setMaterial(event.target.value)}><option value="">Нужен подбор</option>{materials.map((item) => <option key={item.slug} value={item.slug}>{item.code} — {item.name}</option>)}</select></label>
+          <label><span>Марка / артикул</span><input name="grade" value={grade} onChange={(event) => setGrade(event.target.value)} placeholder="Например, K12N/B" /></label>
+        </div>
+        <label><span>Условия работы и размеры *</span><textarea name="task" rows={7} required placeholder="Температура, химическая среда, нагрузка, размеры, количество и желаемый срок" /></label>
+        <label className="file-field"><span><FileUp size={18} /> Чертёж или техническое задание</span><input name="file" type="file" accept=".pdf,.dwg,.dxf,.step,.stp,.jpg,.jpeg,.png" /><small>Файл остаётся на устройстве: после отправки пришлите его письмом на info@exapolymer.ru.</small></label>
+        <label className="consent-field"><input type="checkbox" required /><span>Согласен, чтобы указанные данные ушли на почту компании через сервис отправки форм и были использованы для ответа на заявку.</span></label>
+        <button className="button button-primary form-submit" type="submit" disabled={status === "sending"}>
+          <Send size={18} /> {status === "sending" ? "Отправляем…" : "Отправить заявку"}
+        </button>
+      </form>
+    </div>
   );
 }

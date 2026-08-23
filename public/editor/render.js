@@ -52,7 +52,7 @@ function clonePhysicalTemplate() {
 }
 
 async function loadCatalog() {
-  const res = await fetch("data/catalog.json");
+  const res = await fetch("/data/catalog.json");
   if (!res.ok) throw new Error("Не удалось загрузить каталог: " + res.status);
   return res.json();
 }

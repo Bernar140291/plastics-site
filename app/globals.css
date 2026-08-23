@@ -387,9 +387,15 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--focus); outline
 .form-success pre { max-height: 310px; overflow: auto; margin: 22px 0; padding: 17px; border: 1px solid var(--line); border-radius: 9px; background: white; color: var(--ink); white-space: pre-wrap; font: 12px/1.6 var(--font-manrope), Arial, sans-serif; }
 .prepared-actions { display: flex; flex-wrap: wrap; gap: 10px; }
 .copy-status { margin-bottom: 0; color: var(--teal-deep) !important; font-weight: 750; }
-.form-success.is-error { border-color: #f0bdb1; background: #fdecea; }
-.form-success.is-error svg { color: var(--orange); }
-.form-success.is-error h2 { color: #7d2c19; }
+.request-form-wrap { display: grid; gap: 20px; }
+.send-error { display: flex; gap: 14px; padding: 20px 22px; border: 1px solid #f0bdb1; border-radius: 13px; background: #fdecea; }
+.send-error > svg { flex: 0 0 auto; margin-top: 2px; color: var(--orange); }
+.send-error h3 { margin: 0 0 6px; color: #7d2c19; font-size: 17px; }
+.send-error p { margin: 0; color: #7d2c19; font-size: 13px; line-height: 1.6; }
+.send-error details { margin: 13px 0; }
+.send-error summary { color: #7d2c19; font-size: 13px; font-weight: 750; cursor: pointer; }
+.send-error pre { max-height: 240px; overflow: auto; margin: 11px 0 0; padding: 15px; border: 1px solid #f0bdb1; border-radius: 9px; background: white; color: var(--ink); white-space: pre-wrap; font: 12px/1.6 var(--font-manrope), Arial, sans-serif; }
+.send-error .prepared-actions { margin-top: 14px; }
 .file-reminder { display: flex; align-items: center; gap: 9px; margin-top: 16px; padding: 13px 15px; border-left: 3px solid var(--teal); border-radius: 0 8px 8px 0; background: white; color: var(--ink) !important; font-size: 13px; }
 .file-reminder svg { flex: 0 0 auto; }
 .file-reminder a { color: var(--teal-deep); font-weight: 750; text-decoration: underline; }

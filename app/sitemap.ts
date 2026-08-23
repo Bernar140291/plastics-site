@@ -1,15 +1,15 @@
 import type { MetadataRoute } from "next";
-import { articleSlug, supplierCatalog } from "./data/catalog";
+import { articleSlug, siteSlugBySourceCode, supplierCatalog } from "./data/catalog";
 import { materials } from "./data/materials";
 import { SITE_ORIGIN } from "./data/site";
 
-/* Код материала в каталоге поставщика не всегда совпадает со слагом сайта. */
-const siteSlugBySourceCode: Record<string, string> = { pe: "pe-hd" };
+/* Момент сборки, а не запроса: иначе каждый обход краулера видел бы все 44 URL
+   изменёнными «прямо сейчас», и lastmod обесценивался бы как сигнал. */
+const BUILD_TIME = new Date();
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
   const url = (path: string, priority: number, changeFrequency: "weekly" | "monthly") =>
-    ({ url: `${SITE_ORIGIN}${path}`, lastModified: now, changeFrequency, priority });
+    ({ url: `${SITE_ORIGIN}${path}`, lastModified: BUILD_TIME, changeFrequency, priority });
 
   const staticPages = [
     url("/", 1, "weekly"),

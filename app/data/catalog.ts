@@ -50,7 +50,13 @@ type CatalogData = { materials: CatalogMaterial[] };
 
 export const supplierCatalog = catalogJson as CatalogData;
 
+/* Код материала в каталоге поставщика не всегда совпадает со слагом сайта.
+   Держим связку в одном месте: отсюда её берут и страницы, и sitemap. */
 const sourceCodeBySlug: Record<string, string> = { "pe-hd": "pe" };
+
+export const siteSlugBySourceCode: Record<string, string> = Object.fromEntries(
+  Object.entries(sourceCodeBySlug).map(([slug, code]) => [code, slug]),
+);
 
 export function articleSlug(code: string) {
   return code

@@ -52,7 +52,7 @@ function updateFolderStatus() {
     el.className = "folder-status connected";
   } else if (window.showDirectoryPicker) {
     el.textContent = "Папка сайта не подключена";
-    el.title = "Нажмите «📁 Папка сайта» и выберите: C:\\Users\\Bernarilya\\Desktop\\Cloude\\Сайт инженерных пластиков";
+    el.title = "Нажмите «📁 Папка сайта» и выберите корневую папку проекта exapolymer-next (там, где лежат app и public)";
     el.className = "folder-status missing";
   } else {
     el.textContent = "Браузер не поддерживает прямую запись — файл будет скачиваться";
@@ -113,11 +113,10 @@ async function pickSiteFolder() {
   const ok = await verifyIsSiteFolder(handle);
   if (!ok) {
     alert(
-      `В папке «${handle.name}» не нашлось public/data/catalog.json — это не похоже на папку сайта.\n\n` +
-      `Нужная папка лежит по пути:\n` +
-      `C:\\Users\\Bernarilya\\Desktop\\Cloude\\Сайт инженерных пластиков\n\n` +
-      `В открывшемся системном окне выберите именно эту папку (там, где лежат index.html, папки data и js) — ` +
-      `просто выделите её одним кликом и нажмите «Выбор папки», не заходя внутрь неё.`
+      `В папке «${handle.name}» не нашлось public/data/catalog.json — это не похоже на папку проекта.\n\n` +
+      `Нужна корневая папка проекта exapolymer-next — та, где лежат app и public.\n\n` +
+      `В открывшемся окне выберите именно её — ` +
+      `выделите одним кликом и нажмите «Выбор папки», не заходя внутрь. В public/data редактор спустится сам.`
     );
     return null;
   }
@@ -811,6 +810,24 @@ function renderPreview() {
   root.innerHTML = "";
   root.appendChild(frame);
   renderProductInto(frame, state.catalog, mat, art);
+  makePreviewLinksInert(frame);
+}
+
+/* Превью рисует разметку страницы целиком, вместе с её навигацией: карточки
+   артикулов, «Оставить заявку», «Вернуться в каталог». Это именно превью, а не
+   сайт — уход по такой ссылке увёл бы со страницы редактора и выбросил все
+   несохранённые правки. Поэтому клики внутри рамки гасим. */
+function makePreviewLinksInert(frame) {
+  // .lightbox-trigger трогать нельзя: лайтбокс берёт путь к фото из href
+  frame.querySelectorAll("a[href]:not(.lightbox-trigger)").forEach((link) => {
+    link.setAttribute("data-preview-link", link.getAttribute("href"));
+    link.removeAttribute("href");
+    link.style.cursor = "default";
+  });
+  frame.addEventListener("click", (event) => {
+    const link = event.target.closest("[data-preview-link]");
+    if (link) event.preventDefault();
+  });
 }
 
 /* ---------------- Сохранение ---------------- */
@@ -838,7 +855,7 @@ async function saveCatalog(forcePick) {
 
       state.dirty = false;
       const stamp = new Date().toLocaleString("ru-RU", { dateStyle: "short", timeStyle: "medium" });
-      updateSaveStatus({ ok: true, text: `Сохранено и проверено · ${stamp}` });
+      updateSaveStatus({ ok: true, text: `Сохранено в public/data/catalog.json · ${stamp}` });
       updateFolderStatus();
       return;
     } catch (err) {
