@@ -679,6 +679,7 @@
         {
           "code": "K6A",
           "form": "Лист / стержень",
+          "photo": "assets/photos/peek/k6a-photo.jpg",
           "colors": [
             "Чёрный"
           ],
@@ -949,7 +950,16 @@
               "pipe": ""
             }
           ],
-          "workPhotos": []
+          "workPhotos": [
+            {
+              "src": "assets/photos/peek/k6a-work-1.jpg",
+              "caption": "Замер поверхностного сопротивления партии"
+            },
+            {
+              "src": "assets/photos/peek/k6a-work-2.jpg",
+              "caption": "Листы в транспортной обрешётке"
+            }
+          ]
         }
       ]
     },
