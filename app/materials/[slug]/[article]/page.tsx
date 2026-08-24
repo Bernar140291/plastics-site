@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Box, FileCheck2, Layers3, Palette } from "lucide-react";
+import { PhotoLink } from "../../../components/lightbox";
 import { ProductTabs } from "../../../components/product-tabs";
 import { articleDescription, articleSlug, catalogArticleBySlug, catalogMaterialBySlug, publicPhoto, siteSlugBySourceCode, supplierCatalog } from "../../../data/catalog";
 import { materialBySlug } from "../../../data/materials";
@@ -51,7 +52,7 @@ export default async function ArticlePage({ params }: PageProps) {
           </nav>
           <div className="article-hero-grid">
             <div className={`article-main-photo ${photo ? "has-photo" : ""}`}>
-              {photo ? <a href={photo} target="_blank" rel="noreferrer"><img src={photo} width="1200" height="900" alt={`${material.code} ${article.code} — ${article.form || "заготовка"}`} /></a> : <div><span>{material.code}</span><strong>{article.code}</strong><small>Фото марки уточняется</small></div>}
+              {photo ? <PhotoLink src={photo} alt={`${material.code} ${article.code} — ${article.form || "заготовка"}`}><img src={photo} width="1200" height="900" alt={`${material.code} ${article.code} — ${article.form || "заготовка"}`} /></PhotoLink> : <div><span>{material.code}</span><strong>{article.code}</strong><small>Фото марки уточняется</small></div>}
             </div>
             <div className="article-hero-copy">
               <a className="back-link" href={`/materials/${slug}`}><ArrowLeft size={17} /> Все марки {material.code}</a>

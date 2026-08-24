@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
+import { LightboxProvider } from "./components/lightbox";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
 import { SITE_ORIGIN } from "./data/site";
@@ -27,9 +28,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="ru">
       <body className={manrope.variable}>
         <a className="skip-link" href="#main-content">К основному содержанию</a>
-        <SiteHeader />
-        {children}
-        <SiteFooter />
+        <LightboxProvider>
+          <SiteHeader />
+          {children}
+          <SiteFooter />
+        </LightboxProvider>
       </body>
     </html>
   );

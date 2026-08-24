@@ -3,6 +3,7 @@
 import { CircleCheck, FileQuestion, Images, Ruler, TableProperties } from "lucide-react";
 import { useState } from "react";
 import type { CatalogArticle } from "../data/catalog";
+import { PhotoLink } from "./lightbox";
 
 type ProductTabsProps = {
   article: CatalogArticle;
@@ -114,7 +115,7 @@ export function ProductTabs({ article, description, materialName }: ProductTabsP
             {workPhotos.length ? (
               <div>
                 <p className="kicker">Примеры изделий</p>
-                <div className="work-gallery">{workPhotos.map((photo, index) => { const src = publicPhoto(photo.src)!; return <a href={src} target="_blank" rel="noreferrer" className="work-photo" key={`${photo.src}-${index}`}><img src={src} width="800" height="600" loading="lazy" alt={photo.caption || `${materialName} ${article.code}: пример изделия`} /><span>{photo.caption || "Открыть фото"}</span></a>; })}</div>
+                <div className="work-gallery">{workPhotos.map((photo, index) => { const src = publicPhoto(photo.src)!; const alt = photo.caption || `${materialName} ${article.code}: пример изделия`; return <PhotoLink src={src} alt={alt} className="work-photo" key={`${photo.src}-${index}`}><img src={src} width="800" height="600" loading="lazy" alt={alt} /><span>{photo.caption || "Открыть фото"}</span></PhotoLink>; })}</div>
               </div>
             ) : <div className="empty-data-card"><Images size={28} /><h3>Фотографии изделий уточняются</h3><p>Главное фото марки показано выше, примеры обработки будут добавляться по мере наполнения каталога.</p></div>}
           </div>

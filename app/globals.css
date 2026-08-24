@@ -179,6 +179,22 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--focus); outline
 .comparison-mobile-cards { display: none; }
 .data-note { margin-top: 14px; color: var(--muted); font-size: 11px; line-height: 1.55; }
 
+/* Просмотр фотографии поверх страницы. Раньше снимок открывался отдельной
+   вкладкой — уводило с карточки и не закрывалось ни ESC, ни кликом. */
+.lightbox { position: fixed; inset: 0; z-index: 90; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: clamp(20px, 5vw, 56px); background: rgba(10, 24, 25, .88); backdrop-filter: blur(4px); animation: lightbox-in .16s ease-out both; cursor: zoom-out; }
+@keyframes lightbox-in { from { opacity: 0; } to { opacity: 1; } }
+.lightbox-image { max-width: min(1240px, 100%); max-height: calc(100vh - 150px); width: auto; height: auto; border-radius: 12px; background: white; box-shadow: 0 26px 70px rgba(0,0,0,.5); cursor: default; }
+.lightbox-caption { max-width: min(760px, 100%); margin: 0; color: #dbe8e5; font-size: 14px; line-height: 1.55; text-align: center; cursor: default; }
+.lightbox-close { position: absolute; top: clamp(14px, 3vw, 26px); right: clamp(14px, 3vw, 26px); width: 46px; height: 46px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.32); border-radius: 10px; background: rgba(255,255,255,.1); color: white; cursor: pointer; transition: background .18s ease, border-color .18s ease; }
+.lightbox-close:hover { background: rgba(255,255,255,.22); border-color: rgba(255,255,255,.6); }
+.lightbox-close:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+
+@media (max-width: 620px) {
+  .lightbox { padding: 16px; gap: 12px; }
+  .lightbox-image { max-height: calc(100vh - 176px); }
+  .lightbox-caption { font-size: 13px; }
+}
+
 /* Липкая полоса выбранных для сравнения. Появляется, когда выбран хотя бы один
    материал, и уводит к таблице сравнения — иначе её приходится искать прокруткой.
    Монтируется вместе с выбором, поэтому анимация на появление, а не transition. */
@@ -303,6 +319,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--focus); outline
 .article-main-photo { aspect-ratio: 4 / 3; overflow: hidden; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.14); border-radius: 17px; background: linear-gradient(145deg, #17383a, #0a655f); }
 .article-main-photo.has-photo { background: white; }
 .article-main-photo > a, .article-main-photo img { width: 100%; height: 100%; display: block; }
+.article-main-photo > a { cursor: zoom-in; }
 .article-main-photo img { object-fit: cover; }
 .article-main-photo > div { display: grid; justify-items: center; gap: 8px; }
 .article-main-photo > div span { color: #7bd0be; font-size: 13px; font-weight: 800; letter-spacing: .12em; }
@@ -353,7 +370,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--focus); outline
 .empty-data-card p { color: var(--muted); font-size: 13px; }
 .applications-panel { display: grid; gap: 44px; }
 .work-gallery { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
-.work-photo { overflow: hidden; border: 1px solid var(--line); border-radius: 11px; background: var(--paper); }
+.work-photo { overflow: hidden; border: 1px solid var(--line); border-radius: 11px; background: var(--paper); cursor: zoom-in; }
 .work-photo img { width: 100%; aspect-ratio: 4 / 3; display: block; object-fit: cover; }
 .work-photo span { display: block; padding: 10px 12px; color: var(--muted); font-size: 11px; }
 .source-warning { margin-top: 22px; border-color: #e2c2b8; background: #fbefeb; }
