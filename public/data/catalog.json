@@ -1343,6 +1343,7 @@
         {
           "code": "I6B",
           "form": "Лист / стержень",
+          "photo": "assets/photos/pei/i6b-photo.jpg",
           "colors": [
             "Чёрный"
           ],
@@ -1566,11 +1567,17 @@
             }
           ],
           "sizeGrid": [],
-          "workPhotos": []
+          "workPhotos": [
+            {
+              "src": "assets/photos/pei/i6b-work-1.jpg",
+              "caption": ""
+            }
+          ]
         },
         {
           "code": "I2B",
           "form": "Лист / стержень",
+          "photo": "assets/photos/pei/i2b-photo.jpg",
           "colors": [
             "Чёрный"
           ],
@@ -1794,7 +1801,12 @@
             }
           ],
           "sizeGrid": [],
-          "workPhotos": []
+          "workPhotos": [
+            {
+              "src": "assets/photos/pei/i2b-work-1.jpg",
+              "caption": ""
+            }
+          ]
         }
       ]
     },
@@ -4170,6 +4182,7 @@
         {
           "code": "M12",
           "form": "Лист / стержень",
+          "photo": "assets/photos/pom/m12-photo.jpg",
           "colors": [
             "Белый",
             "Чёрный",
@@ -4587,6 +4600,40 @@
               "rod": "1010 мм",
               "pipe": ""
             }
+          ],
+          "workPhotos": [
+            {
+              "src": "assets/photos/pom/m12-work-1.jpg",
+              "caption": "Чёрное исполнение"
+            },
+            {
+              "src": "assets/photos/pom/m12-work-2.jpg",
+              "caption": ""
+            },
+            {
+              "src": "assets/photos/pom/m12-work-3.jpg",
+              "caption": ""
+            },
+            {
+              "src": "assets/photos/pom/m12-work-4.jpg",
+              "caption": ""
+            },
+            {
+              "src": "assets/photos/pom/m12-work-5.jpg",
+              "caption": ""
+            },
+            {
+              "src": "assets/photos/pom/m12-work-6.jpg",
+              "caption": ""
+            },
+            {
+              "src": "assets/photos/pom/m12-work-7.jpg",
+              "caption": ""
+            },
+            {
+              "src": "assets/photos/pom/m12-work-8.jpg",
+              "caption": ""
+            }
           ]
         },
         {
@@ -4817,6 +4864,7 @@
         {
           "code": "M6",
           "form": "Лист / стержень",
+          "photo": "assets/photos/pom/m6-photo.jpg",
           "colors": [
             "Бежевый",
             "Белый",
@@ -5179,6 +5227,32 @@
               "sheet": "",
               "rod": "2020 мм",
               "pipe": ""
+            }
+          ],
+          "workPhotos": [
+            {
+              "src": "assets/photos/pom/m6-work-1.jpg",
+              "caption": "Чёрное исполнение"
+            },
+            {
+              "src": "assets/photos/pom/m6-work-2.jpg",
+              "caption": ""
+            },
+            {
+              "src": "assets/photos/pom/m6-work-3.jpg",
+              "caption": ""
+            },
+            {
+              "src": "assets/photos/pom/m6-work-4.jpg",
+              "caption": ""
+            },
+            {
+              "src": "assets/photos/pom/m6-work-5.jpg",
+              "caption": ""
+            },
+            {
+              "src": "assets/photos/pom/m6-work-6.jpg",
+              "caption": ""
             }
           ]
         },
