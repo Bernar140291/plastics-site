@@ -47,9 +47,6 @@ export default async function ArticlePage({ params }: PageProps) {
     <main id="main-content">
       <section className="article-hero">
         <div className="container">
-          <nav className="breadcrumbs" aria-label="Хлебные крошки">
-            <a href="/catalog">Каталог</a><span>/</span><a href={`/materials/${slug}`}>{material.code}</a><span>/</span><span>{article.code}</span>
-          </nav>
           <div className="article-hero-grid">
             <div className={`article-main-photo ${photo ? "has-photo" : ""}`}>
               {photo ? <PhotoLink src={photo} alt={`${material.code} ${article.code} — ${article.form || "заготовка"}`}><img src={photo} width="1200" height="900" alt={`${material.code} ${article.code} — ${article.form || "заготовка"}`} /></PhotoLink> : <div><span>{material.code}</span><strong>{article.code}</strong><small>Фото марки уточняется</small></div>}
