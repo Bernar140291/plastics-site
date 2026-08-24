@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Clock3, Mail, ShieldCheck } from "lucide-react";
 import { RequestForm } from "../components/request-form";
 
@@ -20,7 +21,9 @@ export default function ContactsPage() {
             </div>
             <div className="safe-note"><ShieldCheck size={20} /><p>До оплаты согласовываются точная марка, производитель, происхождение, срок, цена и доступный комплект документов.</p></div>
           </div>
-          <RequestForm />
+          <Suspense fallback={<div className="request-form" aria-busy="true" />}>
+            <RequestForm />
+          </Suspense>
         </div>
       </section>
     </main>

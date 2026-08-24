@@ -9,7 +9,7 @@
     "dev": "vinext dev",
     "build": "vinext build",
     "start": "vinext start",
-    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern public/editor"
+    "lint": "eslint ."
   },
   "dependencies": {
     "lucide-react": "^1.33.0",

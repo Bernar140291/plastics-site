@@ -1,7 +1,9 @@
+import { readFile } from 'node:fs/promises';
+import { extname, join, normalize } from 'node:path';
 import { sites } from '@openai/sites-vite-plugin';
 import tailwindcss from '@tailwindcss/postcss';
 import vinext from 'vinext';
-import { defineConfig } from 'vite';
+import { defineConfig, type Plugin } from 'vite';
 import hostingConfig from './.openai/hosting.json';
 
 const SITE_CREATOR_PLACEHOLDER_DATABASE_ID =
@@ -11,6 +13,51 @@ const { d1, r2 } = hostingConfig;
 
 // macOS Seatbelt blocks FSEvents, so Codex previews need polling for HMR.
 const isCodexSeatbeltSandbox = process.env.CODEX_SANDBOX === 'seatbelt';
+
+/* Редактор каталога — инструмент разработки, а не часть сайта.
+   Он лежит в tools/editor и раздаётся только dev-сервером (apply: 'serve'),
+   поэтому в производственную сборку не попадает: наружу не торчит, и
+   не возникает расхождения «читаю из dist/, пишу в public/» — в dev оба
+   конца работают с одним и тем же public/data/catalog.json. */
+const MIME: Record<string, string> = {
+  '.html': 'text/html; charset=utf-8',
+  '.js': 'text/javascript; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.svg': 'image/svg+xml',
+};
+
+function devEditor(): Plugin {
+  const root = join(process.cwd(), 'tools', 'editor');
+  return {
+    name: 'exapolymer-dev-editor',
+    apply: 'serve',
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        const url = (req.url || '').split('?')[0];
+        if (!url.startsWith('/editor')) return next();
+
+        const rest = url.slice('/editor'.length).replace(/^\/+/, '');
+        const file = rest === '' ? 'index.html' : rest;
+
+        // не выпускаем за пределы tools/editor
+        const target = normalize(join(root, file));
+        if (!target.startsWith(root)) {
+          res.statusCode = 403;
+          return res.end('Forbidden');
+        }
+
+        readFile(target).then(
+          (body) => {
+            res.setHeader('Content-Type', MIME[extname(target)] ?? 'application/octet-stream');
+            res.setHeader('Cache-Control', 'no-store');
+            res.end(body);
+          },
+          () => next(),
+        );
+      });
+    },
+  };
+}
 
 const localBindingConfig = {
   main: 'vinext/server/app-router-entry',
@@ -50,6 +97,7 @@ export default defineConfig(async () => {
       ? { watch: { useFsEvents: false, usePolling: true } }
       : undefined,
     plugins: [
+      devEditor(),
       vinext(),
       sites(),
       cloudflare({

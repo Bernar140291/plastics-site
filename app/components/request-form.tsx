@@ -1,7 +1,8 @@
 "use client";
 
 import { AlertTriangle, CheckCircle2, Copy, FileUp, Mail, RotateCcw, Send } from "lucide-react";
-import { FormEvent, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { FormEvent, useState } from "react";
 import { materials } from "../data/materials";
 
 /* Тот же рабочий эндпоинт, что и на exapolymer.ru — ключ web3forms публичный по устройству сервиса. */
@@ -11,19 +12,17 @@ const ACCESS_KEY = "aef11f7d-2862-4ff1-8086-336d73e0efc3";
 type Status = "idle" | "sending" | "sent" | "error";
 
 export function RequestForm() {
+  /* Материал и марка приходят ссылкой с карточки: /contacts?material=peek&grade=K12N%2FB.
+     Читаем их сразу в начальное состояние — эффект, дописывающий состояние
+     после первого рендера, давал лишний каскад рендеров. */
+  const searchParams = useSearchParams();
   const [status, setStatus] = useState<Status>("idle");
-  const [material, setMaterial] = useState("");
-  const [grade, setGrade] = useState("");
+  const [material, setMaterial] = useState(() => searchParams.get("material") || "");
+  const [grade, setGrade] = useState(() => searchParams.get("grade") || "");
   const [fallbackText, setFallbackText] = useState("");
   const [mailto, setMailto] = useState("");
   const [hadFile, setHadFile] = useState(false);
   const [copyStatus, setCopyStatus] = useState("");
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    setMaterial(params.get("material") || "");
-    setGrade(params.get("grade") || "");
-  }, []);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
