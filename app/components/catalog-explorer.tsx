@@ -1,7 +1,7 @@
 "use client";
 
-import { ArrowRight, Check, GitCompareArrows, RotateCcw, Search, Thermometer, X } from "lucide-react";
-import { useMemo, useState } from "react";
+import { ArrowRight, Check, GitCompareArrows, RotateCcw, Search, Table2, Thermometer, X } from "lucide-react";
+import { useMemo, useRef, useState } from "react";
 import { formOptions, loadOptions, Material, materials, mediaOptions } from "../data/materials";
 
 const emptyFilters = { query: "", temperature: "", medium: "", load: "", form: "", availability: "" };
@@ -11,6 +11,7 @@ export function CatalogExplorer() {
   const [filters, setFilters] = useState(emptyFilters);
   const [compare, setCompare] = useState<string[]>([]);
   const [message, setMessage] = useState("");
+  const comparisonRef = useRef<HTMLElement>(null);
 
   const filtered = useMemo(() => materials.filter((material) => {
     const haystack = `${material.code} ${material.name} ${material.aliases} ${material.summary}`.toLowerCase();
@@ -39,6 +40,14 @@ export function CatalogExplorer() {
       }
       return [...current, slug];
     });
+  }
+
+  function plural(n: number, one: string, few: string, many: string) {
+    const mod10 = n % 10;
+    const mod100 = n % 100;
+    if (mod10 === 1 && mod100 !== 11) return one;
+    if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return few;
+    return many;
   }
 
   function updateFilter(name: keyof typeof filters, value: string) {
@@ -97,7 +106,7 @@ export function CatalogExplorer() {
       )}
 
       {compared.length > 0 && (
-        <section className="comparison-section" id="comparison" aria-labelledby="comparison-title">
+        <section className="comparison-section" id="comparison" ref={comparisonRef} aria-labelledby="comparison-title">
           <div className="comparison-heading">
             <div><p className="kicker">Сравнение</p><h2 id="comparison-title">Выбранные материалы</h2></div>
             <button className="reset-button" type="button" onClick={() => setCompare([])}><X size={16} /> Очистить</button>
@@ -124,6 +133,33 @@ export function CatalogExplorer() {
             </>
           )}
         </section>
+      )}
+
+      {/* Результат сравнения уезжает вниз за экран, и без этой полосы его
+          приходится искать прокруткой. Панель монтируется только когда есть
+          что сравнивать: скрытая через transform, она оставляла бы свои
+          кнопки в порядке обхода по Tab. */}
+      {compare.length > 0 && (
+        <div className="compare-bar" role="region" aria-label="Выбранные для сравнения">
+          <div className="compare-bar-inner">
+            <div className="compare-bar-text">
+              <strong>Выбрано {compare.length} {plural(compare.length, "материал", "материала", "материалов")}</strong>
+              <span>Можно сравнить до 3</span>
+            </div>
+            <div className="compare-bar-actions">
+              <button className="compare-bar-reset" type="button" onClick={() => { setCompare([]); setMessage(""); }}>
+                <X size={16} /> Очистить
+              </button>
+              <button
+                className="button button-primary button-small"
+                type="button"
+                onClick={() => comparisonRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })}
+              >
+                <Table2 size={17} /> Показать сравнение
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </>
   );

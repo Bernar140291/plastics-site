@@ -179,6 +179,30 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--focus); outline
 .comparison-mobile-cards { display: none; }
 .data-note { margin-top: 14px; color: var(--muted); font-size: 11px; line-height: 1.55; }
 
+/* Липкая полоса выбранных для сравнения. Появляется, когда выбран хотя бы один
+   материал, и уводит к таблице сравнения — иначе её приходится искать прокруткой.
+   Монтируется вместе с выбором, поэтому анимация на появление, а не transition. */
+/* шапка липкая и высотой ~82px — без отступа заголовок сравнения уезжает под неё */
+.comparison-section { scroll-margin-top: 98px; }
+.compare-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; background: var(--ink); color: white; border-top: 1px solid rgba(255,255,255,.14); box-shadow: 0 -10px 30px rgba(16,37,38,.22); padding-bottom: env(safe-area-inset-bottom); animation: compare-bar-in .22s ease-out both; }
+@keyframes compare-bar-in { from { transform: translateY(100%); } to { transform: translateY(0); } }
+.compare-bar-inner { width: min(1180px, calc(100% - 48px)); margin-inline: auto; min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 13px; }
+.compare-bar-text { display: grid; gap: 3px; min-width: 0; }
+.compare-bar-text strong { font-size: 15px; letter-spacing: -.01em; }
+.compare-bar-text span { color: #9db6b1; font-size: 12px; }
+.compare-bar-actions { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+.compare-bar-reset { min-height: 44px; display: inline-flex; align-items: center; gap: 7px; padding: 0 15px; border: 1px solid rgba(255,255,255,.28); border-radius: 8px; background: transparent; color: white; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; transition: background .18s ease, border-color .18s ease; }
+.compare-bar-reset:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.5); }
+/* чтобы полоса не накрывала последний блок страницы */
+.catalog-section:has(.compare-bar) { padding-bottom: 124px; }
+
+@media (max-width: 620px) {
+  .compare-bar-inner { flex-direction: column; align-items: stretch; gap: 11px; padding-block: 14px; }
+  .compare-bar-actions { width: 100%; }
+  .compare-bar-actions .button, .compare-bar-reset { flex: 1; justify-content: center; }
+  .catalog-section:has(.compare-bar) { padding-bottom: 168px; }
+}
+
 .material-hero { background: var(--ink); color: white; padding: 45px 0 74px; }
 .back-link { display: inline-flex; align-items: center; gap: 7px; color: #b9ceca; font-size: 13px; font-weight: 700; }
 .material-hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 70px; align-items: end; margin-top: 52px; }
