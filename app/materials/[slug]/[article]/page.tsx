@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, Box, FileCheck2, Layers3, Palette } from "lucide-react";
+import { ArrowRight, Box, FileCheck2, Layers3, Palette } from "lucide-react";
 import { PhotoLink } from "../../../components/lightbox";
+import { MaterialNav } from "../../../components/material-nav";
 import { ProductTabs } from "../../../components/product-tabs";
 import { articleDescription, articleSlug, catalogArticleBySlug, catalogMaterialBySlug, publicPhoto, siteSlugBySourceCode, supplierCatalog } from "../../../data/catalog";
 import { materialBySlug } from "../../../data/materials";
@@ -29,7 +30,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title,
     description,
-    openGraph: { title, description, images },
+    alternates: { canonical: `/materials/${slug}/${articleSlug(article.code)}` },
+    openGraph: { title, description, images, url: `/materials/${slug}/${articleSlug(article.code)}` },
     twitter: { card: image ? "summary_large_image" : "summary", title, description, images },
   };
 }
@@ -48,11 +50,13 @@ export default async function ArticlePage({ params }: PageProps) {
       <section className="article-hero">
         <div className="container">
           <div className="article-hero-grid">
-            <div className={`article-main-photo ${photo ? "has-photo" : ""}`}>
-              {photo ? <PhotoLink src={photo} alt={`${material.code} ${article.code} — ${article.form || "заготовка"}`}><img src={photo} width="1200" height="900" alt={`${material.code} ${article.code} — ${article.form || "заготовка"}`} /></PhotoLink> : <div><span>{material.code}</span><strong>{article.code}</strong><small>Фото марки уточняется</small></div>}
-            </div>
+            <figure className="article-image-block">
+              <div className={`article-main-photo ${photo ? "has-photo" : ""}`}>
+                {photo ? <PhotoLink src={photo} alt={`${material.code} ${article.code} — ${article.form || "заготовка"}${article.photoKind === "illustration" ? " (иллюстрация)" : ""}`}><img src={photo} width="1200" height="900" fetchPriority="high" alt={`${material.code} ${article.code} — ${article.form || "заготовка"}`} /></PhotoLink> : <div><span>{material.code}</span><strong>{article.code}</strong><small>Фото марки уточняется</small></div>}
+              </div>
+              {article.photoKind === "illustration" && <figcaption className="article-image-caption">Иллюстрация материала, созданная с помощью ИИ. Внешний вид партии уточняется при заказе.</figcaption>}
+            </figure>
             <div className="article-hero-copy">
-              <a className="back-link" href={`/materials/${slug}`}><ArrowLeft size={17} /> Все марки {material.code}</a>
               <p className="eyebrow">{article.kind || "Исполнение материала"}</p>
               <h1>{material.code} {article.code}</h1>
               <p className="article-lead">{article.shortDescription || material.summary}</p>
@@ -70,6 +74,8 @@ export default async function ArticlePage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      <MaterialNav activeSlug={slug} />
 
       <section className="section product-section" id="specifications">
         <div className="container">

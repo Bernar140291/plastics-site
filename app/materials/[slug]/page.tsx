@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { AlertTriangle, ArrowLeft, ArrowRight, Box, CircleCheck, FileQuestion, Gauge, Layers3, Thermometer } from "lucide-react";
+import { AlertTriangle, ArrowRight, Box, CircleCheck, FileQuestion, Gauge, Layers3, Thermometer } from "lucide-react";
+import { MaterialNav } from "../../components/material-nav";
 import { articleSlug, catalogMaterialBySlug, publicPhoto } from "../../data/catalog";
 import { materialBySlug, materials } from "../../data/materials";
 
@@ -13,6 +14,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!material) return { title: "Материал не найден", openGraph: { images: [] }, twitter: { images: [] } };
   return {
     title: `${material.code} — ${material.name}`,
+    alternates: { canonical: `/materials/${material.slug}` },
     description: `${material.summary} Свойства, марки, ограничения и формы поставки.`,
     openGraph: { title: `${material.code} — ${material.name}`, description: material.summary, images: [] },
     twitter: { card: "summary", title: `${material.code} — ${material.name}`, description: material.summary, images: [] },
@@ -30,7 +32,6 @@ export default async function MaterialPage({ params }: PageProps) {
     <main id="main-content">
       <section className="material-hero">
         <div className="container">
-          <a className="back-link" href="/catalog"><ArrowLeft size={17} /> Каталог материалов</a>
           <div className="material-hero-grid">
             <div>
               <p className="eyebrow">{material.category}</p>
@@ -53,11 +54,12 @@ export default async function MaterialPage({ params }: PageProps) {
         </div>
       </section>
 
+      <MaterialNav activeSlug={slug} />
+
       <section className="section grades-section" id="grades">
         <div className="container">
           <div className="section-heading">
             <div><p className="kicker">Марки и исполнения</p><h2>{artikuls.length ? `Доступные позиции ${material.code}` : `Позиции ${material.code} уточняются`}</h2></div>
-            <a className="text-link" href="/catalog">Сравнить материалы <ArrowRight size={17} /></a>
           </div>
           <p className="supplier-data-note">Описание и технические показатели перенесены из каталога поставщика. Перед заказом сверяем точную марку, наполнение, форму поставки и технический лист партии.</p>
 
@@ -68,7 +70,8 @@ export default async function MaterialPage({ params }: PageProps) {
                 return (
                   <a className="grade-card" href={`/materials/${slug}/${articleSlug(article.code)}`} key={article.code}>
                     <div className={`grade-photo ${photo ? "has-photo" : ""}`}>
-                      {photo ? <img src={photo} alt={`${material.code} ${article.code}`} width="800" height="600" loading="lazy" /> : <span><b>{article.code}</b><small>Фото уточняется</small></span>}
+                      {photo ? <img src={photo} alt={`${material.code} ${article.code}${article.photoKind === "illustration" ? " — иллюстрация" : ""}`} width="800" height="600" loading="lazy" decoding="async" /> : <span><b>{article.code}</b><small>Фото уточняется</small></span>}
+                      {article.photoKind === "illustration" && <small className="photo-label">Иллюстрация</small>}
                     </div>
                     <div className="grade-card-body">
                       <div className="grade-card-top"><span className="material-code">{article.code}</span><ArrowRight size={19} /></div>

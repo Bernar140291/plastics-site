@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ArrowRight, Boxes, ClipboardList, FileCheck2, PackageCheck, Route, Scale } from "lucide-react";
 
-export const metadata: Metadata = { title: "Как проходит поставка", description: "Этапы подбора, проверки партии и расчёта поставки инженерных пластиков." };
+export const metadata: Metadata = { title: "Как проходит поставка", description: "Этапы подбора, проверки партии и расчёта поставки инженерных пластиков.", alternates: { canonical: "/supply" } };
 
 export default function SupplyPage() {
   return (

@@ -5,6 +5,7 @@ import { materials } from "../data/materials";
 
 export const metadata: Metadata = {
   title: "О проекте",
+  alternates: { canonical: "/about" },
   description: "ExaPolymer — проект по подбору и поставке инженерных пластиков под задачу заказчика.",
 };
 

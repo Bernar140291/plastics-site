@@ -3,9 +3,7 @@ import {
   Boxes,
   CircleCheckBig,
   ClipboardCheck,
-  FileCheck2,
   FlaskConical,
-  Gauge,
   PackageCheck,
   Ruler,
   Send,
@@ -13,8 +11,11 @@ import {
   Thermometer,
 } from "lucide-react";
 import { materials } from "./data/materials";
+import type { Metadata } from "next";
 
-const featured = ["peek", "ptfe", "pom"].map((slug) => materials.find((material) => material.slug === slug)!);
+export const metadata: Metadata = { alternates: { canonical: "/" } };
+
+const featured = ["peek", "pom", "pa"].map((slug) => materials.find((material) => material.slug === slug)!);
 
 export default function Home() {
   return (
@@ -32,16 +33,19 @@ export default function Home() {
             <p className="launch-note">Проект на этапе запуска. Наличие, срок и комплект документов подтверждаем для каждой партии до оформления заказа.</p>
           </div>
 
-          <div className="hero-panel" aria-label="Схема подбора материала">
-            <div className="panel-topline"><span>Карта подбора</span><span>01—04</span></div>
-            <div className="selection-list">
-              <div><Thermometer /><span><small>Температура</small><strong>рабочий диапазон</strong></span><b>01</b></div>
-              <div><FlaskConical /><span><small>Среда</small><strong>химия и влажность</strong></span><b>02</b></div>
-              <div><Gauge /><span><small>Нагрузка</small><strong>прочность и трение</strong></span><b>03</b></div>
-              <div><Ruler /><span><small>Форма</small><strong>лист, стержень, заготовка</strong></span><b>04</b></div>
+          <figure className="hero-materials">
+            <div className="hero-materials-frame">
+              <picture>
+                <source
+                  srcSet="/images/hero-exapolymer-milk-480.webp 480w, /images/hero-exapolymer-milk.webp 800w"
+                  sizes="(max-width: 900px) min(440px, calc(100vw - 32px)), 480px"
+                  type="image/webp"
+                />
+                <img src="/images/hero-exapolymer-milk-crop.jpg" alt="Листы и стержни инженерных пластиков молочного и чёрного цвета" width={800} height={910} fetchPriority="high" />
+              </picture>
             </div>
-            <div className="panel-result"><FileCheck2 size={20} /><span>На выходе: спецификация материала и расчёт поставки</span></div>
-          </div>
+            <figcaption>Листы, стержни, заготовки · Иллюстрация</figcaption>
+          </figure>
         </div>
       </section>
 

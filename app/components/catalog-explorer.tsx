@@ -5,9 +5,17 @@ import { useMemo, useRef, useState } from "react";
 import { formOptions, loadOptions, Material, materials, mediaOptions } from "../data/materials";
 
 const emptyFilters = { query: "", temperature: "", medium: "", load: "", form: "", availability: "" };
-const gradeCounts: Record<string, number> = { peek: 3, pei: 3, pps: 4, pa: 3, pom: 4, pc: 2, pet: 1, ptfe: 1, pu: 2, abs: 2 };
 
-export function CatalogExplorer() {
+function gradeWord(count: number) {
+  const tail100 = count % 100;
+  const tail10 = count % 10;
+  if (tail100 >= 11 && tail100 <= 14) return "марок";
+  if (tail10 === 1) return "марка";
+  if (tail10 >= 2 && tail10 <= 4) return "марки";
+  return "марок";
+}
+
+export function CatalogExplorer({ gradeCounts }: { gradeCounts: Record<string, number> }) {
   const [filters, setFilters] = useState(emptyFilters);
   const [compare, setCompare] = useState<string[]>([]);
   const [message, setMessage] = useState("");
@@ -20,7 +28,7 @@ export function CatalogExplorer() {
       || (filters.temperature === "120" && material.tempMax > 80 && material.tempMax <= 120)
       || (filters.temperature === "200" && material.tempMax > 120 && material.tempMax <= 200)
       || (filters.temperature === "201" && material.tempMax > 200);
-    return haystack.includes(filters.query.toLowerCase())
+    return haystack.includes(filters.query.trim().toLowerCase())
       && temperatureMatch
       && (!filters.medium || material.media.includes(filters.medium))
       && (!filters.load || material.loads.includes(filters.load))
@@ -62,7 +70,7 @@ export function CatalogExplorer() {
           <button className="reset-button" type="button" onClick={() => setFilters(emptyFilters)}><RotateCcw size={16} /> Сбросить</button>
         </div>
         <div className="filters-grid">
-          <label className="search-field"><span>Поиск</span><span className="input-with-icon"><Search size={17} /><input type="search" value={filters.query} onChange={(event) => updateFilter("query", event.target.value)} placeholder="PEEK, фторопласт…" /></span></label>
+          <label className="search-field"><span>Поиск</span><span className="input-with-icon"><Search size={17} /><input type="search" value={filters.query} onChange={(event) => updateFilter("query", event.target.value)} placeholder="PEEK, полиацеталь…" /></span></label>
           <label><span>Температура</span><select value={filters.temperature} onChange={(event) => updateFilter("temperature", event.target.value)}><option value="">Любая</option><option value="80">до 80 °C</option><option value="120">81–120 °C</option><option value="200">121–200 °C</option><option value="201">выше 200 °C</option></select></label>
           <label><span>Среда</span><select value={filters.medium} onChange={(event) => updateFilter("medium", event.target.value)}><option value="">Любая</option>{mediaOptions.map((option) => <option key={option}>{option}</option>)}</select></label>
           <label><span>Нагрузка</span><select value={filters.load} onChange={(event) => updateFilter("load", event.target.value)}><option value="">Любая</option>{loadOptions.map((option) => <option key={option}>{option}</option>)}</select></label>
@@ -90,11 +98,11 @@ export function CatalogExplorer() {
                   <p className="catalog-summary-text">{material.summary}</p>
                   <div className="spec-row"><Thermometer size={17} /><span>{material.temperature}</span></div>
                   <div className="tag-row">{material.forms.slice(0, 3).map((form) => <span key={form}>{form}</span>)}</div>
-                  <p className="grade-count">{gradeCounts[material.slug] ? `${gradeCounts[material.slug]} ${gradeCounts[material.slug] === 1 ? "марка" : "марки"} в каталоге` : "Марка подбирается по запросу"}</p>
+                  <p className="grade-count">{gradeCounts[material.slug] ? `${gradeCounts[material.slug]} ${gradeWord(gradeCounts[material.slug])} в каталоге` : "Марка подбирается по запросу"}</p>
                   <p className="availability"><span /> Доступность уточняется</p>
                 </a>
                 <label className={`compare-control ${selected ? "is-selected" : ""}`}>
-                  <input type="checkbox" checked={selected} disabled={!selected && compare.length >= 3} onChange={() => toggleCompare(material.slug)} />
+                  <input type="checkbox" aria-label={`${selected ? "Убрать" : "Добавить"} ${material.code} ${selected ? "из сравнения" : "в сравнение"}`} checked={selected} disabled={!selected && compare.length >= 3} onChange={() => toggleCompare(material.slug)} />
                   <span>{selected ? <Check size={17} /> : <GitCompareArrows size={17} />}{selected ? "Добавлено" : "В сравнение"}</span>
                 </label>
               </article>
@@ -106,7 +114,7 @@ export function CatalogExplorer() {
       )}
 
       {compared.length > 0 && (
-        <section className="comparison-section" id="comparison" ref={comparisonRef} aria-labelledby="comparison-title">
+        <section className="comparison-section" id="comparison" ref={comparisonRef} tabIndex={-1} aria-labelledby="comparison-title">
           <div className="comparison-heading">
             <div><p className="kicker">Сравнение</p><h2 id="comparison-title">Выбранные материалы</h2></div>
             <button className="reset-button" type="button" onClick={() => setCompare([])}><X size={16} /> Очистить</button>
@@ -153,7 +161,10 @@ export function CatalogExplorer() {
               <button
                 className="button button-primary button-small"
                 type="button"
-                onClick={() => comparisonRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })}
+                onClick={() => {
+                  comparisonRef.current?.focus({ preventScroll: true });
+                  comparisonRef.current?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" });
+                }}
               >
                 <Table2 size={17} /> Показать сравнение
               </button>
