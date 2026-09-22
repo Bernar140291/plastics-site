@@ -10,7 +10,7 @@ const indexable = process.env.EXPECTED_INDEXABLE === 'true';
 const catalog = JSON.parse(readFileSync(resolve(root, 'public/data/catalog.json'), 'utf8'));
 const slug = code => code.toLowerCase().replace(/\+/g, '-plus-').replace(/\//g, '-').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 const pages = ['/', '/catalog', '/contacts', '/about', '/supply', '/privacy', '/consent'];
-const photos = new Set(['/og.jpg', '/icon.svg']);
+const photos = new Set(['/og-milk.jpg', '/icon.svg']);
 for (const material of catalog.materials) {
   pages.push(`/materials/${material.code}`);
   for (const article of material.artikuls) {

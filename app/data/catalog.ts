@@ -89,14 +89,8 @@ export function publicPhoto(path?: string) {
   return path ? `/${path.replace(/^\//, "")}` : undefined;
 }
 
-export function articleDescription(materialCode: string, article: CatalogArticle) {
-  if (materialCode === "pps" && article.code === "S12B") {
-    return "Чёрное исполнение базового PPS для деталей, работающих при повышенной температуре и в химически активных средах. Марка сочетает низкое влагопоглощение, размерную стабильность и огнестойкость. Состав, наличие наполнителя и фактические показатели необходимо подтвердить по техническому листу конкретной партии.";
-  }
-
-  return (article.description || article.shortDescription || "Описание уточняется по техническому листу производителя.")
-    .replace(/полифениленсульфона/gi, "полифениленсульфида")
-    .replace(/присущей полиэфирэфиркетону/gi, "присущей полиэфиримиду");
+export function articleDescription(article: CatalogArticle) {
+  return article.description || article.shortDescription || "Описание уточняется по техническому листу производителя.";
 }
 
 export function articleCount() {

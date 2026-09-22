@@ -43,7 +43,7 @@ export default async function ArticlePage({ params }: PageProps) {
   const article = catalogArticleBySlug(slug, articleParam);
   if (!material || !sourceMaterial || !article) notFound();
   const photo = publicPhoto(article.photo);
-  const description = articleDescription(sourceMaterial.code, article);
+  const description = articleDescription(article);
 
   return (
     <main id="main-content">
