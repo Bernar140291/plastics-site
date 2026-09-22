@@ -610,6 +610,13 @@ function artikulFormHTML(mat, art) {
       <label>Фото товара <span class="field-hint-inline">(вкладка «Сведения» — вместо заглушки)</span></label>
       <input type="text" data-field="photo" id="photoPathInput" value="${escapeAttr(art.photo || "")}" placeholder="assets/photos/${escapeAttr((mat.code || "").toLowerCase())}/имя-файла.jpg">
       <p class="field-hint" style="margin:6px 0 0">Сам файл нужно заранее положить в папку сайта по этому пути (спросите, если нужно добавить новое фото).</p>
+      <label for="photoKindInput">Тип изображения</label>
+      <select data-field="photoKind" id="photoKindInput">
+        <option value="" ${!art.photoKind ? "selected" : ""}>Не указан</option>
+        <option value="photo" ${art.photoKind === "photo" ? "selected" : ""}>Фотография</option>
+        <option value="illustration" ${art.photoKind === "illustration" ? "selected" : ""}>ИИ-иллюстрация материала</option>
+      </select>
+      <p class="field-hint" style="margin:6px 0 0">Для иллюстрации на сайте появится соответствующая подпись. При замене на реальное фото измените тип.</p>
       <div class="photo-preview" id="photoPreview" style="display:none">
         <img id="photoPreviewImg" ${art.photo ? `src="${escapeAttr(assetUrl(art.photo))}"` : ""} alt="" onerror="document.getElementById('photoPreview').style.display='none'" onload="document.getElementById('photoPreview').style.display='block'">
       </div>

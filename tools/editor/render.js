@@ -68,9 +68,8 @@ function findArtikul(material, code) {
 /* ---------- Боковая навигация по материалам (material.html, product.html) ---------- */
 /* Группировка соответствует трём уровням на catalog.html — держать в синхроне при добавлении материала. */
 const MATERIAL_GROUPS = [
-  { title: "Высокотемпературные", codes: ["peek", "pei", "pps", "ptfe", "pvdf"] },
+  { title: "Высокотемпературные", codes: ["peek", "pei", "pps"] },
   { title: "Конструкционные", codes: ["pa", "pom", "pc", "pet", "pu", "abs"] },
-  { title: "Стандартные", codes: ["pp", "pe", "uhmwpe"] },
 ];
 
 function materialSidebarHTML(catalog, activeCode) {
@@ -241,7 +240,8 @@ function renderProductInto(root, catalog, material, art) {
                   ? `<div class="product-photo"><a class="lightbox-trigger" href="${escapeHtml(assetUrl(art.photo))}"><img src="${escapeHtml(assetUrl(art.photo))}" alt="${escapeHtml(material.name)} ${escapeHtml(art.code)} — ${escapeHtml((art.colors || []).join(", "))}" loading="lazy"></a></div>`
                   : `<div class="photo-slot">Фото ${escapeHtml(art.code)} (${escapeHtml((art.colors || []).join(", "))}) — заглушка до реальных фото</div>`
               }
-              <dl class="kv">
+                ${art.photoKind === "illustration" ? '<p class="photo-kind-note">Иллюстрация материала, созданная с помощью ИИ. Внешний вид партии уточняется при заказе.</p>' : ""}
+                <dl class="kv">
                 <dt>Материал</dt><dd>${escapeHtml(material.name)} (${escapeHtml(material.fullName || "")})</dd>
                 <dt>Артикул</dt><dd>${escapeHtml(art.code)}</dd>
                 <dt>Форма поставки</dt><dd>${escapeHtml(art.form || "—")}</dd>

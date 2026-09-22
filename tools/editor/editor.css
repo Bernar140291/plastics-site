@@ -110,6 +110,8 @@ body.editor-body { overflow: hidden; }
 .editor-form-pane .field-hint { font-size: .82rem; color: var(--text-muted); margin: 0 0 22px; }
 .field-hint-inline { font-weight: 400; font-size: .78em; color: var(--text-muted); }
 .editor-form-pane .form-row textarea { min-height: 56px; }
+.editor-form-pane .form-row select { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: white; color: inherit; font: inherit; }
+.photo-kind-note { margin: 12px 0; color: var(--text-muted); font-size: .82rem; line-height: 1.5; }
 .photo-preview { margin-top: 10px; max-width: 220px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
 .photo-preview img { display: block; width: 100%; height: auto; }
 .editor-empty { color: var(--text-muted); font-size: .95rem; padding: 40px 0; text-align: center; }

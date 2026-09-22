@@ -23,6 +23,7 @@ export type SizeRow = {
 export type WorkPhoto = {
   src: string;
   caption?: string;
+  kind?: "photo" | "illustration";
 };
 
 export type CatalogArticle = {
@@ -31,6 +32,7 @@ export type CatalogArticle = {
   form?: string;
   colors?: string[];
   photo?: string;
+  photoKind?: "photo" | "illustration";
   shortDescription?: string;
   description?: string;
   applications?: string[];
@@ -51,11 +53,18 @@ type CatalogData = { materials: CatalogMaterial[] };
 export const supplierCatalog = catalogJson as CatalogData;
 
 /* Код материала в каталоге поставщика не всегда совпадает со слагом сайта.
-   Держим связку в одном месте: отсюда её берут и страницы, и sitemap. */
-const sourceCodeBySlug: Record<string, string> = { "pe-hd": "pe" };
+   Держим связку в одном месте: отсюда её берут и страницы, и sitemap.
+   Сейчас пусто — единственное расхождение (`pe-hd` → `pe`) ушло вместе с PE-HD. */
+const sourceCodeBySlug: Record<string, string> = {};
 
 export const siteSlugBySourceCode: Record<string, string> = Object.fromEntries(
   Object.entries(sourceCodeBySlug).map(([slug, code]) => [code, slug]),
+);
+
+/* Сколько марок опубликовано у материала. Считается по каталогу, а не списком в коде:
+   таблица руками успела разойтись с данными (POM было 4 против 7, PET-P 1 против 3). */
+export const articleCountBySlug: Record<string, number> = Object.fromEntries(
+  supplierCatalog.materials.map((material) => [siteSlugBySourceCode[material.code] ?? material.code, material.artikuls.length]),
 );
 
 export function articleSlug(code: string) {
