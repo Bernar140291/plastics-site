@@ -360,10 +360,11 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--focus); outline
 .product-section { background: white; scroll-margin-top: 86px; }
 .product-tabs { overflow: hidden; border: 1px solid var(--line); border-radius: 15px; background: white; }
 .product-tab-list { display: grid; grid-template-columns: repeat(4,1fr); border-bottom: 1px solid var(--line); background: #edf2ef; }
-.product-tab-list button { min-height: 62px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; border-right: 1px solid var(--line); border-bottom: 3px solid transparent; background: transparent; color: #405a58; font: inherit; font-size: 12px; font-weight: 800; cursor: pointer; }
+.product-tab-list button { position: relative; min-height: 62px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; border-right: 1px solid var(--line); background: transparent; color: #405a58; font: inherit; font-size: 12px; font-weight: 800; cursor: pointer; }
 .product-tab-list button:last-child { border-right: 0; }
-.product-tab-list button:hover { background: white; }
-.product-tab-list button.is-active { border-bottom-color: var(--orange); background: white; color: var(--ink); }
+.product-tab-list button:hover { background: var(--tint); }
+.product-tab-list button.is-active { background: white; color: var(--ink); }
+.product-tab-list button.is-active::after { content: ""; position: absolute; left: 50%; bottom: 0; width: 28px; height: 3px; border-radius: 2px 2px 0 0; background: var(--orange); transform: translateX(-50%); }
 .product-tab-panel { padding: 34px; }
 .product-overview-grid { display: grid; grid-template-columns: minmax(0,1.25fr) minmax(280px,.75fr); gap: 60px; align-items: start; }
 .product-overview-grid h2, .applications-panel h2 { margin: 0; font-size: 32px; letter-spacing: -.04em; }
@@ -579,7 +580,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--focus); outline
   .article-facts > div { min-height: 88px; }
   .product-tab-list { grid-template-columns: 1fr 1fr; }
   .product-tab-list button { min-height: 58px; border-bottom: 1px solid var(--line); }
-  .product-tab-list button.is-active { box-shadow: inset 0 -3px var(--orange); }
+  .product-tab-list button.is-active::after { width: 36px; }
   .product-tab-panel { padding: 22px 15px; }
   .technical-table-wrap { margin-inline: -1px; }
   .supply-timeline article { grid-template-columns: 44px 32px 1fr; gap: 12px; }
