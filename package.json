@@ -9,7 +9,11 @@
     "dev": "vinext dev",
     "build": "vinext build",
     "start": "vinext start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "typecheck": "node node_modules/typescript/bin/tsc --noEmit --incremental false",
+    "check:catalog": "node tools/check-catalog.mjs",
+    "check": "pnpm lint && pnpm typecheck && pnpm check:catalog",
+    "smoke": "node tools/smoke.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.33.0",
