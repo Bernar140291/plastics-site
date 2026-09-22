@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Clock3, Mail, ShieldCheck } from "lucide-react";
 import { RequestForm } from "../components/request-form";
+import { FORM_DELIVERY_ENABLED, PRIVACY_VERSION } from "../data/site";
 
-export const metadata: Metadata = { title: "Контакты и запрос на расчёт", description: "Отправьте техническое задание или запросите подбор инженерного пластика." };
+export const metadata: Metadata = { title: "Контакты и запрос на расчёт", description: "Отправьте техническое задание или запросите подбор инженерного пластика.", alternates: { canonical: "/contacts" } };
 
 export default function ContactsPage() {
   return (
@@ -22,7 +23,7 @@ export default function ContactsPage() {
             <div className="safe-note"><ShieldCheck size={20} /><p>До оплаты согласовываются точная марка, производитель, происхождение, срок, цена и доступный комплект документов.</p></div>
           </div>
           <Suspense fallback={<div className="request-form" aria-busy="true" />}>
-            <RequestForm />
+            <RequestForm deliveryEnabled={FORM_DELIVERY_ENABLED} privacyVersion={PRIVACY_VERSION} />
           </Suspense>
         </div>
       </section>

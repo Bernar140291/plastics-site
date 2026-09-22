@@ -1,9 +1,11 @@
 import type { MetadataRoute } from "next";
-import { SITE_ORIGIN } from "./data/site";
+import { SITE_INDEXABLE, SITE_ORIGIN } from "./data/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: { userAgent: "*", allow: "/" },
-    sitemap: `${SITE_ORIGIN}/sitemap.xml`,
+    rules: SITE_INDEXABLE
+      ? { userAgent: "*", allow: "/", disallow: ["/editor/", "/data/"] }
+      : { userAgent: "*", disallow: "/" },
+    ...(SITE_INDEXABLE ? { sitemap: `${SITE_ORIGIN}/sitemap.xml` } : {}),
   };
 }
