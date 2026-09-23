@@ -77,7 +77,7 @@ export function ProductTabs({ article, description, materialName }: ProductTabsP
 
         {active === "physical" && (
           <div>
-            <div className="data-source-banner"><FileQuestion size={20} /><p><strong>Предварительные данные поставщика.</strong> Пустые показатели обозначены как «не указано». Перед применением в расчёте запросите актуальный технический лист на конкретную марку.</p></div>
+            <div className="data-source-banner"><FileQuestion size={20} /><p><strong>Предварительные данные поставщика.</strong> Пустые показатели обозначены как «не указано». {article.colors && article.colors.length > 1 ? `Значения вида «А/Б» без указания условий — раздельно для исполнений «${article.colors[0]}» и «${article.colors[1]}». ` : ""}Перед применением в расчёте запросите актуальный технический лист на конкретную марку.</p></div>
             {physicalGroups.length ? physicalGroups.map((group) => (
               <section className="technical-group" key={group.group}>
                 <h3>{group.group}</h3>
