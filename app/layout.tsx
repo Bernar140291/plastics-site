@@ -24,10 +24,22 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: "ExaPolymer", description: "Инженерные пластики под задачу", images: ["/og-milk.jpg"] },
 };
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "ExaPolymer",
+  url: SITE_ORIGIN,
+  logo: `${SITE_ORIGIN}/icon.svg`,
+  description: "Подбор и поставка инженерных пластиков под заказ: листы, стержни и заготовки PEEK, PEI, PPS, POM, PA, PA66, PC, PET, PU, ABS.",
+  email: "info@exapolymer.ru",
+  areaServed: "RU",
+};
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ru">
       <body className={manrope.variable}>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd).replace(/</g, "\\u003c") }} />
         <a className="skip-link" href="#main-content">К основному содержанию</a>
         <LightboxProvider>
           <SiteHeader />

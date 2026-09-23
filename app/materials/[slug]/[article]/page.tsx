@@ -44,9 +44,32 @@ export default async function ArticlePage({ params }: PageProps) {
   if (!material || !sourceMaterial || !article) notFound();
   const photo = publicPhoto(article.photo);
   const description = articleDescription(article);
+  const pageUrl = `${SITE_ORIGIN}/materials/${slug}/${articleSlug(article.code)}`;
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: `${material.name} ${article.code}`,
+    sku: article.code,
+    description,
+    category: material.category,
+    material: material.name,
+    ...(photo ? { image: new URL(photo, SITE_ORIGIN).toString() } : {}),
+    url: pageUrl,
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Каталог", item: `${SITE_ORIGIN}/catalog` },
+      { "@type": "ListItem", position: 2, name: material.name, item: `${SITE_ORIGIN}/materials/${slug}` },
+      { "@type": "ListItem", position: 3, name: article.code, item: pageUrl },
+    ],
+  };
 
   return (
     <main id="main-content">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd).replace(/</g, "\\u003c") }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, "\\u003c") }} />
       <section className="article-hero">
         <div className="container">
           <div className="article-hero-grid">

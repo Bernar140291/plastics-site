@@ -4,6 +4,7 @@ import { AlertTriangle, ArrowRight, Box, CircleCheck, FileQuestion, Gauge, Layer
 import { MaterialNav } from "../../components/material-nav";
 import { articleSlug, catalogMaterialBySlug, publicPhoto } from "../../data/catalog";
 import { materialBySlug, materials } from "../../data/materials";
+import { SITE_ORIGIN } from "../../data/site";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -27,9 +28,18 @@ export default async function MaterialPage({ params }: PageProps) {
   if (!material) notFound();
   const sourceMaterial = catalogMaterialBySlug(slug);
   const artikuls = sourceMaterial?.artikuls ?? [];
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Каталог", item: `${SITE_ORIGIN}/catalog` },
+      { "@type": "ListItem", position: 2, name: material.name, item: `${SITE_ORIGIN}/materials/${material.slug}` },
+    ],
+  };
 
   return (
     <main id="main-content">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, "\\u003c") }} />
       <section className="material-hero">
         <div className="container">
           <div className="material-hero-grid">
