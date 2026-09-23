@@ -3179,7 +3179,7 @@
     {
       "code": "pa",
       "name": "PA",
-      "fullName": "Полиамид (PA6)",
+      "fullName": "Полиамид PA6",
       "artikuls": [
         {
           "code": "A6B",
@@ -3864,7 +3864,7 @@
     {
       "code": "pa66",
       "name": "PA66",
-      "fullName": "Полиамид 66",
+      "fullName": "Полиамид PA66",
       "artikuls": [
         {
           "code": "A6612N",
@@ -4229,7 +4229,7 @@
     {
       "code": "pom",
       "name": "POM",
-      "fullName": "Полиформальдегид (полиацеталь)",
+      "fullName": "Полиоксиметилен",
       "artikuls": [
         {
           "code": "M12N",
@@ -8768,7 +8768,7 @@
     {
       "code": "abs",
       "name": "ABS",
-      "fullName": "Акрилонитрилбутадиенстирол",
+      "fullName": "АБС-пластик",
       "artikuls": [
         {
           "code": "B6N",
