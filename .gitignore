@@ -43,3 +43,6 @@ next-env.d.ts
 /dist/
 tsconfig.tsbuildinfo
 /.vinext/
+
+# claude scratch files
+/.claude-scratch/
