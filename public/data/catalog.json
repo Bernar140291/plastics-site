@@ -8995,7 +8995,62 @@
               ]
             }
           ],
-          "sizeGrid": [],
+          "sizeGrid": [
+            {
+              "range": "8",
+              "sheet": "620×1250 мм",
+              "rod": "",
+              "pipe": ""
+            },
+            {
+              "range": "10",
+              "sheet": "620×1250 мм",
+              "rod": "",
+              "pipe": ""
+            },
+            {
+              "range": "12",
+              "sheet": "620×1250 мм",
+              "rod": "",
+              "pipe": ""
+            },
+            {
+              "range": "15",
+              "sheet": "620×1250 мм",
+              "rod": "",
+              "pipe": ""
+            },
+            {
+              "range": "20",
+              "sheet": "620×1250 мм",
+              "rod": "",
+              "pipe": ""
+            },
+            {
+              "range": "25",
+              "sheet": "620×1250 мм",
+              "rod": "",
+              "pipe": ""
+            },
+            {
+              "range": "30",
+              "sheet": "620×1250 мм",
+              "rod": "",
+              "pipe": ""
+            },
+            {
+              "range": "35",
+              "sheet": "620×1250 мм",
+              "rod": "",
+              "pipe": ""
+            },
+            {
+              "range": "40",
+              "sheet": "620×1250 мм",
+              "rod": "",
+              "pipe": ""
+            }
+          ],
           "workPhotos": [
             {
               "src": "assets/photos/abs/b6n-example-illustration.jpg",
@@ -9231,7 +9286,62 @@
               ]
             }
           ],
-          "sizeGrid": [],
+          "sizeGrid": [
+            {
+              "range": "8",
+              "sheet": "620×1250 мм",
+              "rod": "",
+              "pipe": ""
+            },
+            {
+              "range": "10",
+              "sheet": "620×1250 мм",
+              "rod": "",
+              "pipe": ""
+            },
+            {
+              "range": "12",
+              "sheet": "620×1250 мм",
+              "rod": "",
+              "pipe": ""
+            },
+            {
+              "range": "15",
+              "sheet": "620×1250 мм",
+              "rod": "",
+              "pipe": ""
+            },
+            {
+              "range": "20",
+              "sheet": "620×1250 мм",
+              "rod": "",
+              "pipe": ""
+            },
+            {
+              "range": "25",
+              "sheet": "620×1250 мм",
+              "rod": "",
+              "pipe": ""
+            },
+            {
+              "range": "30",
+              "sheet": "620×1250 мм",
+              "rod": "",
+              "pipe": ""
+            },
+            {
+              "range": "35",
+              "sheet": "620×1250 мм",
+              "rod": "",
+              "pipe": ""
+            },
+            {
+              "range": "40",
+              "sheet": "620×1250 мм",
+              "rod": "",
+              "pipe": ""
+            }
+          ],
           "workPhotos": [
             {
               "src": "assets/photos/abs/b6b-example-illustration.jpg",
