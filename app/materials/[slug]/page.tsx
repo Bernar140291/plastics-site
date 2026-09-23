@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!material) return { title: "Материал не найден", openGraph: { images: [] }, twitter: { images: [] } };
   const formsText = material.forms
     .filter((form) => form !== "Заготовка")
-    .map((form) => (form === "Стержень" ? "стержень (пруток)" : form.toLowerCase()))
+    .map((form) => (form === "Стержень" ? "стержень (пруток)" : form === "Лист" ? "лист (плита)" : form.toLowerCase()))
     .join(", ");
   const description = `${material.name} (${material.code}) — инженерный пластик: ${formsText}. ${material.summary}`;
   return {
@@ -62,7 +62,7 @@ export default async function MaterialPage({ params }: PageProps) {
             <div className="material-metrics">
               <div><Thermometer /><span>Температура<strong>{material.temperature}</strong></span></div>
               <div><Gauge /><span>Прочность при растяжении<strong>{material.tensile}</strong></span></div>
-              <div><Box /><span>Формы поставки<strong>{material.forms.map((form) => form === "Стержень" ? "Стержень (пруток)" : form).join(", ")}</strong></span></div>
+              <div><Box /><span>Формы поставки<strong>{material.forms.map((form) => form === "Стержень" ? "Стержень (пруток)" : form === "Лист" ? "Лист (плита)" : form).join(", ")}</strong></span></div>
               <div><Layers3 /><span>Марки в каталоге<strong>{artikuls.length || "по запросу"}</strong></span></div>
             </div>
           </div>
